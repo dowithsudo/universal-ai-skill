@@ -1,0 +1,90 @@
+{
+  "name": "universal-agent-skills",
+  "version": "1.0.0",
+  "description": "Universal Agent Skills - 63 skills from 4 repos for Claude, Cursor, Windsurf, and other MCP agents",
+  "repository": "universal-agent-skills",
+  "license": "MIT",
+  "tools": [
+    {
+      "name": "frontend-design-taste",
+      "description": "Anti-slop frontend design framework - stronger layout, typography, motion, spacing",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "skill": {
+            "type": "string",
+            "enum": ["taste-skill", "taste-skill-v1", "gpt-taste", "image-to-code", "redesign", "high-end-visual", "full-output", "minimalist", "brutalist", "stitch", "imagegen-web", "imagegen-mobile", "brandkit"],
+            "description": "Specific frontend design skill to activate"
+          },
+          "brief": {
+            "type": "string",
+            "description": "Design brief or project description"
+          }
+        },
+        "required": ["skill"]
+      },
+      "source": "sources/taste-skill/skills/"
+    },
+    {
+      "name": "seo-audit",
+      "description": "Full website SEO audit with parallel sub-agent execution",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Target URL to audit"
+          },
+          "scope": {
+            "type": "string",
+            "enum": ["full", "technical", "content", "schema", "geo", "local", "backlinks"],
+            "description": "Audit scope"
+          }
+        },
+        "required": ["url"]
+      },
+      "source": "sources/claude-seo/skills/"
+    },
+    {
+      "name": "engineering-workflow",
+      "description": "Software engineering workflow skills - spec, plan, build, test, review, ship",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "phase": {
+            "type": "string",
+            "enum": ["define", "plan", "build", "verify", "review", "ship"],
+            "description": "Development lifecycle phase"
+          },
+          "skill": {
+            "type": "string",
+            "description": "Specific skill name (e.g., test-driven-development, code-review)"
+          }
+        },
+        "required": ["phase"]
+      },
+      "source": "sources/agent-skills/skills/"
+    },
+    {
+      "name": "writing-quality",
+      "description": "Remove AI slop patterns from writing while preserving personal voice",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Writing text to clean from AI slop"
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["edit", "detect"],
+            "description": "Edit mode (remove slop) or detect mode (identify slop patterns)"
+          }
+        },
+        "required": ["text"]
+      },
+      "source": "sources/no-ai-slop/skills/"
+    }
+  ]
+}

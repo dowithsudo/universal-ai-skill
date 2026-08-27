@@ -1,0 +1,258 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Universal Agent Skills API",
+    "version": "1.0.0",
+    "description": "REST/JSON-RPC interface for 63 skills from 4 repos - compatible with OpenCode, FreeBuff, Custom Agent Scripts",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/skills": {
+      "get": {
+        "summary": "List all available skills",
+        "description": "Returns a list of all 63 skills organized by category",
+        "operationId": "listSkills",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["frontend-design", "seo", "engineering", "writing"]
+            },
+            "description": "Filter by skill category"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of skills",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "skills": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "name": { "type": "string" },
+                          "category": { "type": "string" },
+                          "description": { "type": "string" },
+                          "source": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/skills/{skillId}": {
+      "get": {
+        "summary": "Get skill details",
+        "description": "Returns detailed information about a specific skill including its SKILL.md content",
+        "operationId": "getSkill",
+        "parameters": [
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Skill identifier (e.g., taste-skill, seo-audit)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "category": { "type": "string" },
+                    "description": { "type": "string" },
+                    "path": { "type": "string" },
+                    "content": { "type": "string" },
+                    "tags": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Skill not found"
+          }
+        }
+      }
+    },
+    "/skills/frontend-design/{skillId}/execute": {
+      "post": {
+        "summary": "Execute a frontend design skill",
+        "description": "Apply a frontend design skill to a project",
+        "operationId": "executeFrontendSkill",
+        "parameters": [
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brief": { "type": "string" },
+                  "projectPath": { "type": "string" }
+                },
+                "required": ["brief"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Skill executed successfully" }
+        }
+      }
+    },
+    "/skills/seo/{skillId}/execute": {
+      "post": {
+        "summary": "Execute an SEO skill",
+        "description": "Run an SEO analysis skill on a target URL",
+        "operationId": "executeSeoSkill",
+        "parameters": [
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": { "type": "string", "format": "uri" },
+                  "options": { "type": "object" }
+                },
+                "required": ["url"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "SEO analysis completed" }
+        }
+      }
+    },
+    "/skills/engineering/{phase}/{skillId}/execute": {
+      "post": {
+        "summary": "Execute an engineering workflow skill",
+        "description": "Run an engineering skill for a specific development phase",
+        "operationId": "executeEngineeringSkill",
+        "parameters": [
+          {
+            "name": "phase",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "enum": ["define", "plan", "build", "verify", "review", "ship"] }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "context": { "type": "string" },
+                  "projectPath": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Engineering skill executed" }
+        }
+      }
+    },
+    "/skills/writing/no-ai-slop/execute": {
+      "post": {
+        "summary": "Clean writing from AI slop",
+        "description": "Remove 20+ AI slop patterns from text while preserving voice",
+        "operationId": "executeWritingSkill",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string" },
+                  "mode": { "type": "string", "enum": ["edit", "detect"] }
+                },
+                "required": ["text"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Writing cleaned" }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "description": "Check API and skill availability",
+        "operationId": "healthCheck",
+        "responses": {
+          "200": {
+            "description": "API healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "totalSkills": { "type": "integer" },
+                    "categories": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

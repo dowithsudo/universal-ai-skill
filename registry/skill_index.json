@@ -1,0 +1,499 @@
+{
+  "version": "1.0.0",
+  "description": "Universal Agent Skills - Global Skill Index",
+  "total_skills": 63,
+  "total_files": 584,
+  "source_repos": {
+    "taste-skill": {
+      "path": "sources/taste-skill/",
+      "description": "Anti-slop frontend design skills for AI agents",
+      "license": "MIT",
+      "skills_count": 13
+    },
+    "claude-seo": {
+      "path": "sources/claude-seo/",
+      "description": "Comprehensive SEO analysis plugin for Claude Code",
+      "license": "MIT",
+      "skills_count": 25
+    },
+    "agent-skills": {
+      "path": "sources/agent-skills/",
+      "description": "Production-grade engineering skills for AI coding agents",
+      "license": "MIT",
+      "skills_count": 24
+    },
+    "no-ai-slop": {
+      "path": "sources/no-ai-slop/",
+      "description": "Remove 20+ patterns of AI slop from writing",
+      "license": "MIT",
+      "skills_count": 1
+    }
+  },
+  "categories": {
+    "frontend-design": {
+      "path": "sources/taste-skill/skills/",
+      "description": "Frontend design, anti-slop UI, image generation",
+      "skills": [
+        {
+          "id": "taste-skill",
+          "name": "design-taste-frontend",
+          "path": "sources/taste-skill/skills/taste-skill/",
+          "description": "Anti-slop frontend framework v2 (experimental)",
+          "tags": ["design", "frontend", "anti-slop", "gsap"]
+        },
+        {
+          "id": "taste-skill-v1",
+          "name": "design-taste-frontend-v1",
+          "path": "sources/taste-skill/skills/taste-skill-v1/",
+          "description": "Original v1 taste-skill for legacy compatibility",
+          "tags": ["design", "frontend", "legacy"]
+        },
+        {
+          "id": "gpt-tasteskill",
+          "name": "gpt-taste",
+          "path": "sources/taste-skill/skills/gpt-tasteskill/",
+          "description": "Stricter variant for GPT/Codex with aggressive anti-slop",
+          "tags": ["design", "frontend", "gpt", "codex"]
+        },
+        {
+          "id": "image-to-code-skill",
+          "name": "image-to-code",
+          "path": "sources/taste-skill/skills/image-to-code-skill/",
+          "description": "Image-first pipeline: generate references, analyze, implement",
+          "tags": ["design", "frontend", "image", "pipeline"]
+        },
+        {
+          "id": "redesign-skill",
+          "name": "redesign-existing-projects",
+          "path": "sources/taste-skill/skills/redesign-skill/",
+          "description": "Audit and improve existing project UI",
+          "tags": ["design", "frontend", "redesign", "audit"]
+        },
+        {
+          "id": "soft-skill",
+          "name": "high-end-visual-design",
+          "path": "sources/taste-skill/skills/soft-skill/",
+          "description": "Polished, calm, expensive UI with premium fonts",
+          "tags": ["design", "frontend", "premium", "calm"]
+        },
+        {
+          "id": "output-skill",
+          "name": "full-output-enforcement",
+          "path": "sources/taste-skill/skills/output-skill/",
+          "description": "Enforce full output, no placeholder comments",
+          "tags": ["design", "frontend", "output", "enforcement"]
+        },
+        {
+          "id": "minimalist-skill",
+          "name": "minimalist-ui",
+          "path": "sources/taste-skill/skills/minimalist-skill/",
+          "description": "Editorial product UI (Notion/Linear vibes)",
+          "tags": ["design", "frontend", "minimalist", "editorial"]
+        },
+        {
+          "id": "brutalist-skill",
+          "name": "industrial-brutalist-ui",
+          "path": "sources/taste-skill/skills/brutalist-skill/",
+          "description": "Hard mechanical language, Swiss type, sharp contrast",
+          "tags": ["design", "frontend", "brutalist", "industrial"]
+        },
+        {
+          "id": "stitch-skill",
+          "name": "stitch-design-taste",
+          "path": "sources/taste-skill/skills/stitch-skill/",
+          "description": "Google Stitch-compatible rules with DESIGN.md export",
+          "tags": ["design", "frontend", "google", "stitch"]
+        },
+        {
+          "id": "imagegen-frontend-web",
+          "name": "imagegen-frontend-web",
+          "path": "sources/taste-skill/skills/imagegen-frontend-web/",
+          "description": "Website comps: hero, landing, multi-section",
+          "tags": ["design", "image-generation", "web"]
+        },
+        {
+          "id": "imagegen-frontend-mobile",
+          "name": "imagegen-frontend-mobile",
+          "path": "sources/taste-skill/skills/imagegen-frontend-mobile/",
+          "description": "Mobile screens and flows: iOS/Android",
+          "tags": ["design", "image-generation", "mobile"]
+        },
+        {
+          "id": "brandkit",
+          "name": "brandkit",
+          "path": "sources/taste-skill/skills/brandkit/",
+          "description": "Brand-kit boards: logo, palettes, type, identity",
+          "tags": ["design", "image-generation", "brand", "identity"]
+        }
+      ]
+    },
+    "seo": {
+      "path": "sources/claude-seo/skills/",
+      "description": "SEO analysis, audits, schema, GEO, local, ecommerce",
+      "skills": [
+        {
+          "id": "seo",
+          "name": "seo-orchestrator",
+          "path": "sources/claude-seo/skills/seo/",
+          "description": "Main SEO orchestrator with parallel sub-agent dispatch",
+          "tags": ["seo", "orchestrator", "audit"]
+        },
+        {
+          "id": "seo-audit",
+          "name": "seo-audit",
+          "path": "sources/claude-seo/skills/seo-audit/",
+          "description": "Full website audit with parallel sub-agent delegation",
+          "tags": ["seo", "audit", "full-site"]
+        },
+        {
+          "id": "seo-technical",
+          "name": "seo-technical",
+          "path": "sources/claude-seo/skills/seo-technical/",
+          "description": "Technical SEO audit across 9 categories",
+          "tags": ["seo", "technical", "core-web-vitals"]
+        },
+        {
+          "id": "seo-content",
+          "name": "seo-content",
+          "path": "sources/claude-seo/skills/seo-content/",
+          "description": "E-E-A-T and content quality analysis",
+          "tags": ["seo", "content", "eeat"]
+        },
+        {
+          "id": "seo-content-brief",
+          "name": "seo-content-brief",
+          "path": "sources/claude-seo/skills/seo-content-brief/",
+          "description": "Content brief: target keywords, outline, internal links",
+          "tags": ["seo", "content", "brief"]
+        },
+        {
+          "id": "seo-schema",
+          "name": "seo-schema",
+          "path": "sources/claude-seo/skills/seo-schema/",
+          "description": "Schema.org markup detect, validate, generate",
+          "tags": ["seo", "schema", "json-ld"]
+        },
+        {
+          "id": "seo-geo",
+          "name": "seo-geo",
+          "path": "sources/claude-seo/skills/seo-geo/",
+          "description": "AI Overviews / Generative Engine Optimization",
+          "tags": ["seo", "geo", "ai-search"]
+        },
+        {
+          "id": "seo-local",
+          "name": "seo-local",
+          "path": "sources/claude-seo/skills/seo-local/",
+          "description": "Local SEO: GBP, citations, reviews, map pack",
+          "tags": ["seo", "local", "google-business"]
+        },
+        {
+          "id": "seo-maps",
+          "name": "seo-maps",
+          "path": "sources/claude-seo/skills/seo-maps/",
+          "description": "Maps intelligence: geo-grid, GBP audit, competitors",
+          "tags": ["seo", "maps", "local"]
+        },
+        {
+          "id": "seo-backlinks",
+          "name": "seo-backlinks",
+          "path": "sources/claude-seo/skills/seo-backlinks/",
+          "description": "Backlink profile analysis",
+          "tags": ["seo", "backlinks", "link-building"]
+        },
+        {
+          "id": "seo-images",
+          "name": "seo-images",
+          "path": "sources/claude-seo/skills/seo-images/",
+          "description": "Image optimization analysis",
+          "tags": ["seo", "images", "optimization"]
+        },
+        {
+          "id": "seo-sitemap",
+          "name": "seo-sitemap",
+          "path": "sources/claude-seo/skills/seo-sitemap/",
+          "description": "XML sitemap analyze or generate",
+          "tags": ["seo", "sitemap", "xml"]
+        },
+        {
+          "id": "seo-cluster",
+          "name": "seo-cluster",
+          "path": "sources/claude-seo/skills/seo-cluster/",
+          "description": "SERP-based semantic clustering",
+          "tags": ["seo", "cluster", "semantic"]
+        },
+        {
+          "id": "seo-plan",
+          "name": "seo-plan",
+          "path": "sources/claude-seo/skills/seo-plan/",
+          "description": "Strategic SEO planning by industry",
+          "tags": ["seo", "plan", "strategy"]
+        },
+        {
+          "id": "seo-programmatic",
+          "name": "seo-programmatic",
+          "path": "sources/claude-seo/skills/seo-programmatic/",
+          "description": "Programmatic SEO analysis and planning",
+          "tags": ["seo", "programmatic", "automation"]
+        },
+        {
+          "id": "seo-competitor-pages",
+          "name": "seo-competitor-pages",
+          "path": "sources/claude-seo/skills/seo-competitor-pages/",
+          "description": "Competitor comparison page generation",
+          "tags": ["seo", "competitor", "comparison"]
+        },
+        {
+          "id": "seo-sxo",
+          "name": "seo-sxo",
+          "path": "sources/claude-seo/skills/seo-sxo/",
+          "description": "Search Experience Optimization",
+          "tags": ["seo", "sxo", "user-experience"]
+        },
+        {
+          "id": "seo-drift",
+          "name": "seo-drift",
+          "path": "sources/claude-seo/skills/seo-drift/",
+          "description": "SEO drift monitoring with SQLite snapshots",
+          "tags": ["seo", "drift", "monitoring"]
+        },
+        {
+          "id": "seo-ecommerce",
+          "name": "seo-ecommerce",
+          "path": "sources/claude-seo/skills/seo-ecommerce/",
+          "description": "E-commerce SEO and marketplace intelligence",
+          "tags": ["seo", "ecommerce", "marketplace"]
+        },
+        {
+          "id": "seo-hreflang",
+          "name": "seo-hreflang",
+          "path": "sources/claude-seo/skills/seo-hreflang/",
+          "description": "Hreflang / i18n SEO audit and generation",
+          "tags": ["seo", "hreflang", "international"]
+        },
+        {
+          "id": "seo-flow",
+          "name": "seo-flow",
+          "path": "sources/claude-seo/skills/seo-flow/",
+          "description": "FLOW framework prompts (evidence-led)",
+          "tags": ["seo", "flow", "framework"]
+        },
+        {
+          "id": "seo-google",
+          "name": "seo-google",
+          "path": "sources/claude-seo/skills/seo-google/",
+          "description": "Google SEO APIs: GSC, PageSpeed, CrUX, Indexing, GA4",
+          "tags": ["seo", "google", "api"]
+        },
+        {
+          "id": "seo-dataforseo",
+          "name": "seo-dataforseo",
+          "path": "sources/claude-seo/skills/seo-dataforseo/",
+          "description": "Live SEO data via DataForSEO",
+          "tags": ["seo", "dataforseo", "extension"]
+        },
+        {
+          "id": "seo-image-gen",
+          "name": "seo-image-gen",
+          "path": "sources/claude-seo/skills/seo-image-gen/",
+          "description": "AI image generation for SEO assets",
+          "tags": ["seo", "image-generation", "extension"]
+        },
+        {
+          "id": "seo-page",
+          "name": "seo-page",
+          "path": "sources/claude-seo/skills/seo-page/",
+          "description": "Deep single-page analysis",
+          "tags": ["seo", "page", "single-page"]
+        }
+      ]
+    },
+    "engineering": {
+      "path": "sources/agent-skills/skills/",
+      "description": "Software engineering workflow skills",
+      "skills": [
+        {
+          "id": "using-agent-skills",
+          "name": "using-agent-skills",
+          "path": "sources/agent-skills/skills/using-agent-skills/",
+          "description": "Meta: how to use this skill pack",
+          "tags": ["engineering", "meta", "workflow"]
+        },
+        {
+          "id": "interview-me",
+          "name": "interview-me",
+          "path": "sources/agent-skills/skills/interview-me/",
+          "description": "Requirements interrogation, one question at a time",
+          "tags": ["engineering", "define", "requirements"]
+        },
+        {
+          "id": "idea-refine",
+          "name": "idea-refine",
+          "path": "sources/agent-skills/skills/idea-refine/",
+          "description": "Structured divergent/convergent thinking for ideas",
+          "tags": ["engineering", "define", "ideation"]
+        },
+        {
+          "id": "spec-driven-development",
+          "name": "spec-driven-development",
+          "path": "sources/agent-skills/skills/spec-driven-development/",
+          "description": "Write PRD before any code",
+          "tags": ["engineering", "define", "spec", "prd"]
+        },
+        {
+          "id": "planning-and-task-breakdown",
+          "name": "planning-and-task-breakdown",
+          "path": "sources/agent-skills/skills/planning-and-task-breakdown/",
+          "description": "Decompose specs into small, verifiable tasks",
+          "tags": ["engineering", "plan", "breakdown"]
+        },
+        {
+          "id": "incremental-implementation",
+          "name": "incremental-implementation",
+          "path": "sources/agent-skills/skills/incremental-implementation/",
+          "description": "Thin vertical slices: implement, test, verify, commit",
+          "tags": ["engineering", "build", "incremental"]
+        },
+        {
+          "id": "test-driven-development",
+          "name": "test-driven-development",
+          "path": "sources/agent-skills/skills/test-driven-development/",
+          "description": "Red-Green-Refactor, test pyramid, DAMP over DRY",
+          "tags": ["engineering", "build", "tdd", "testing"]
+        },
+        {
+          "id": "context-engineering",
+          "name": "context-engineering",
+          "path": "sources/agent-skills/skills/context-engineering/",
+          "description": "Feed agents the right information at the right time",
+          "tags": ["engineering", "build", "context"]
+        },
+        {
+          "id": "source-driven-development",
+          "name": "source-driven-development",
+          "path": "sources/agent-skills/skills/source-driven-development/",
+          "description": "Ground every decision in official documentation",
+          "tags": ["engineering", "build", "documentation"]
+        },
+        {
+          "id": "doubt-driven-development",
+          "name": "doubt-driven-development",
+          "path": "sources/agent-skills/skills/doubt-driven-development/",
+          "description": "Adversarial fresh-context review of decisions",
+          "tags": ["engineering", "build", "review", "adversarial"]
+        },
+        {
+          "id": "frontend-ui-engineering",
+          "name": "frontend-ui-engineering",
+          "path": "sources/agent-skills/skills/frontend-ui-engineering/",
+          "description": "Component architecture, design systems, WCAG 2.1 AA",
+          "tags": ["engineering", "build", "frontend", "ui"]
+        },
+        {
+          "id": "api-and-interface-design",
+          "name": "api-and-interface-design",
+          "path": "sources/agent-skills/skills/api-and-interface-design/",
+          "description": "Contract-first design, Hyrum's Law, error semantics",
+          "tags": ["engineering", "build", "api", "design"]
+        },
+        {
+          "id": "browser-testing-with-devtools",
+          "name": "browser-testing-with-devtools",
+          "path": "sources/agent-skills/skills/browser-testing-with-devtools/",
+          "description": "Chrome DevTools MCP for live runtime data",
+          "tags": ["engineering", "verify", "browser", "devtools"]
+        },
+        {
+          "id": "debugging-and-error-recovery",
+          "name": "debugging-and-error-recovery",
+          "path": "sources/agent-skills/skills/debugging-and-error-recovery/",
+          "description": "Five-step triage: reproduce, localize, reduce, fix, guard",
+          "tags": ["engineering", "verify", "debugging"]
+        },
+        {
+          "id": "code-review-and-quality",
+          "name": "code-review-and-quality",
+          "path": "sources/agent-skills/skills/code-review-and-quality/",
+          "description": "Five-axis review, change sizing, severity labels",
+          "tags": ["engineering", "review", "code-review"]
+        },
+        {
+          "id": "code-simplification",
+          "name": "code-simplification",
+          "path": "sources/agent-skills/skills/code-simplification/",
+          "description": "Chesterton's Fence, Rule of 500, reduce complexity",
+          "tags": ["engineering", "review", "simplification"]
+        },
+        {
+          "id": "security-and-hardening",
+          "name": "security-and-hardening",
+          "path": "sources/agent-skills/skills/security-and-hardening/",
+          "description": "OWASP Top 10 prevention, auth patterns, secrets management",
+          "tags": ["engineering", "review", "security"]
+        },
+        {
+          "id": "performance-optimization",
+          "name": "performance-optimization",
+          "path": "sources/agent-skills/skills/performance-optimization/",
+          "description": "Measure-first approach, Core Web Vitals, profiling",
+          "tags": ["engineering", "review", "performance"]
+        },
+        {
+          "id": "git-workflow-and-versioning",
+          "name": "git-workflow-and-versioning",
+          "path": "sources/agent-skills/skills/git-workflow-and-versioning/",
+          "description": "Trunk-based development, atomic commits",
+          "tags": ["engineering", "ship", "git"]
+        },
+        {
+          "id": "ci-cd-and-automation",
+          "name": "ci-cd-and-automation",
+          "path": "sources/agent-skills/skills/ci-cd-and-automation/",
+          "description": "Shift Left, feature flags, quality gate pipelines",
+          "tags": ["engineering", "ship", "ci-cd"]
+        },
+        {
+          "id": "deprecation-and-migration",
+          "name": "deprecation-and-migration",
+          "path": "sources/agent-skills/skills/deprecation-and-migration/",
+          "description": "Code-as-liability, migration patterns, zombie code removal",
+          "tags": ["engineering", "ship", "deprecation"]
+        },
+        {
+          "id": "documentation-and-adrs",
+          "name": "documentation-and-adrs",
+          "path": "sources/agent-skills/skills/documentation-and-adrs/",
+          "description": "Architecture Decision Records, API docs standards",
+          "tags": ["engineering", "ship", "documentation"]
+        },
+        {
+          "id": "observability-and-instrumentation",
+          "name": "observability-and-instrumentation",
+          "path": "sources/agent-skills/skills/observability-and-instrumentation/",
+          "description": "Structured logging, RED metrics, OpenTelemetry",
+          "tags": ["engineering", "ship", "observability"]
+        },
+        {
+          "id": "shipping-and-launch",
+          "name": "shipping-and-launch",
+          "path": "sources/agent-skills/skills/shipping-and-launch/",
+          "description": "Pre-launch checklists, staged rollbacks, monitoring",
+          "tags": ["engineering", "ship", "launch"]
+        }
+      ]
+    },
+    "writing": {
+      "path": "sources/no-ai-slop/skills/",
+      "description": "Writing quality and AI slop detection",
+      "skills": [
+        {
+          "id": "no-ai-slop",
+          "name": "no-ai-slop",
+          "path": "sources/no-ai-slop/skills/no-ai-slop/",
+          "description": "Remove 20+ patterns of AI slop from writing",
+          "tags": ["writing", "editing", "ai-slop", "voice"]
+        }
+      ]
+    }
+  }
+}
