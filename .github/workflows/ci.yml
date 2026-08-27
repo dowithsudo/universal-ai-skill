@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Make scripts executable
+        run: |
+          chmod +x scripts/test_all_skills.sh
+          chmod +x scripts/sync_diff.sh
+          chmod +x scripts/generate_registry.sh
+      
+      - name: Run test suite
+        run: bash scripts/test_all_skills.sh
+      
+      - name: Generate registry
+        run: bash scripts/generate_registry.sh
+      
+      - name: Check for changes
+        run: |
+          if [ -n "$(git status --porcelain registry/skill_index.json)" ]; then
+            echo "⚠️ Registry is out of date. Run 'bash scripts/generate_registry.sh' locally."
+            exit 1
+          fi
+  
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Validate SKILL.md files
+        run: |
+          echo "Validating SKILL.md files..."
+          for skill in $(find sources/ -name "SKILL.md" -type f); do
+            # Check file size
+            size=$(wc -c < "$skill")
+            if [ "$size" -lt 50 ]; then
+              echo "❌ $skill is too small ($size bytes)"
+              exit 1
+            fi
+            
+            # Check for content
+            lines=$(wc -l < "$skill")
+            if [ "$lines" -lt 10 ]; then
+              echo "❌ $skill has too few lines ($lines)"
+              exit 1
+            fi
+            
+            echo "✅ $skill"
+          done
+      
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+          for json in registry/skill_index.json mcp.json openapi.json; do
+            if [ -f "$json" ]; then
+              if python3 -m json.tool "$json" > /dev/null 2>&1; then
+                echo "✅ $json is valid JSON"
+              else
+                echo "❌ $json is invalid JSON"
+                exit 1
+              fi
+            fi
+          done
+  
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Check for common issues
+        run: |
+          echo "Checking for common issues..."
+          
+          # Check for Chinese characters in documentation
+          for doc in README.md HOW_TO_USE.md CONTRIBUTING.md AGENT.md; do
+            if [ -f "$doc" ]; then
+              if grep -P '[\x{4e00}-\x{9fff}]' "$doc" > /dev/null 2>&1; then
+                echo "⚠️ $doc contains Chinese characters"
+              else
+                echo "✅ $doc has no Chinese characters"
+              fi
+            fi
+          done
+          
+          # Check for trailing whitespace
+          echo "Checking for trailing whitespace..."
+          if grep -r " $" sources/ --include="*.md" | head -5; then
+            echo "⚠️ Found files with trailing whitespace"
+          else
+            echo "✅ No trailing whitespace found"
+          fi

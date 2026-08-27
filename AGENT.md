@@ -1,15 +1,15 @@
 # Universal Agent Skills
 
-> **Core Bootstrap Document** — Wajib dibaca oleh AI Agent saat berinteraksi dengan repo ini.
+> **Dokumen Bootstrap Inti** — Wajib dibaca oleh AI Agent saat berinteraksi dengan repo ini.
 
-## System Taxonomy
+## Taxonomy Skill
 
 Monorepo ini berisi **63 skills** dari 4 repositori sumber, dikonsolidasi tanpa kehilangan 1 fungsi pun.
 
 ### Lokasi Skill
 
-| Kategori | Path | Jumlah | Sumber |
-|----------|------|--------|--------|
+| Kategori | Lokasi | Jumlah | Sumber |
+|----------|--------|--------|--------|
 | **Frontend Design** | `sources/taste-skill/skills/` | 13 | taste-skill |
 | **SEO Analysis** | `sources/claude-seo/skills/` | 25 | claude-seo |
 | **Engineering Workflow** | `sources/agent-skills/skills/` | 24 | agent-skills |
@@ -19,15 +19,15 @@ Monorepo ini berisi **63 skills** dari 4 repositori sumber, dikonsolidasi tanpa 
 
 ## Frontend Design Skills (13)
 
-Source: `sources/taste-skill/skills/`
+Lokasi: `sources/taste-skill/skills/`
 
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
 | `taste-skill` | `sources/taste-skill/skills/taste-skill/` | Anti-slop frontend v2 (experimental) |
 | `taste-skill-v1` | `sources/taste-skill/skills/taste-skill-v1/` | Legacy v1 |
 | `gpt-tasteskill` | `sources/taste-skill/skills/gpt-tasteskill/` | GPT/Codex strict variant |
 | `image-to-code-skill` | `sources/taste-skill/skills/image-to-code-skill/` | Image-first pipeline |
-| `redesign-skill` | `sources/taste-skill/skills/redesign-skill/` | Existing projects audit |
+| `redesign-skill` | `sources/taste-skill/skills/redesign-skill/` | Audit project existing |
 | `soft-skill` | `sources/taste-skill/skills/soft-skill/` | Premium calm UI |
 | `output-skill` | `sources/taste-skill/skills/output-skill/` | Anti-truncation |
 | `minimalist-skill` | `sources/taste-skill/skills/minimalist-skill/` | Editorial UI |
@@ -41,10 +41,10 @@ Source: `sources/taste-skill/skills/`
 
 ## SEO Analysis Skills (25)
 
-Source: `sources/claude-seo/skills/`
+Lokasi: `sources/claude-seo/skills/`
 
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
 | `seo` | `sources/claude-seo/skills/seo/` | Main orchestrator |
 | `seo-audit` | `sources/claude-seo/skills/seo-audit/` | Full site audit |
 | `seo-technical` | `sources/claude-seo/skills/seo-technical/` | Technical SEO |
@@ -75,56 +75,56 @@ Source: `sources/claude-seo/skills/`
 
 ## Engineering Workflow Skills (24)
 
-Source: `sources/agent-skills/skills/`
+Lokasi: `sources/agent-skills/skills/`
 
 ### Meta
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
-| `using-agent-skills` | `sources/agent-skills/skills/using-agent-skills/` | How to use this pack |
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
+| `using-agent-skills` | `sources/agent-skills/skills/using-agent-skills/` | Cara menggunakan skill pack ini |
 
 ### Define
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
-| `interview-me` | `sources/agent-skills/skills/interview-me/` | Requirements extraction |
-| `idea-refine` | `sources/agent-skills/skills/idea-refine/` | Idea exploration |
-| `spec-driven-development` | `sources/agent-skills/skills/spec-driven-development/` | PRD before code |
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
+| `interview-me` | `sources/agent-skills/skills/interview-me/` | Ekstraksi kebutuhan |
+| `idea-refine` | `sources/agent-skills/skills/idea-refine/` | Eksplorasi ide |
+| `spec-driven-development` | `sources/agent-skills/skills/spec-driven-development/` | PRD sebelum kode |
 
 ### Plan
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
-| `planning-and-task-breakdown` | `sources/agent-skills/skills/planning-and-task-breakdown/` | Task decomposition |
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
+| `planning-and-task-breakdown` | `sources/agent-skills/skills/planning-and-task-breakdown/` | Pecahan tugas |
 
 ### Build
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
 | `incremental-implementation` | `sources/agent-skills/skills/incremental-implementation/` | Vertical slices |
 | `test-driven-development` | `sources/agent-skills/skills/test-driven-development/` | Red-Green-Refactor |
-| `context-engineering` | `sources/agent-skills/skills/context-engineering/` | Right info, right time |
-| `source-driven-development` | `sources/agent-skills/skills/source-driven-development/` | Official docs grounding |
-| `doubt-driven-development` | `sources/agent-skills/skills/doubt-driven-development/` | Adversarial review |
-| `frontend-ui-engineering` | `sources/agent-skills/skills/frontend-ui-engineering/` | UI components, a11y |
+| `context-engineering` | `sources/agent-skills/skills/context-engineering/` | Informasi tepat waktu |
+| `source-driven-development` | `sources/agent-skills/skills/source-driven-development/` | Berdasarkan dokumentasi resmi |
+| `doubt-driven-development` | `sources/agent-skills/skills/doubt-driven-development/` | Review adversarial |
+| `frontend-ui-engineering` | `sources/agent-skills/skills/frontend-ui-engineering/` | Komponen UI, a11y |
 | `api-and-interface-design` | `sources/agent-skills/skills/api-and-interface-design/` | Contract-first API |
 
 ### Verify
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
 | `browser-testing-with-devtools` | `sources/agent-skills/skills/browser-testing-with-devtools/` | Chrome DevTools MCP |
 | `debugging-and-error-recovery` | `sources/agent-skills/skills/debugging-and-error-recovery/` | Five-step triage |
 
 ### Review
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
 | `code-review-and-quality` | `sources/agent-skills/skills/code-review-and-quality/` | Five-axis review |
-| `code-simplification` | `sources/agent-skills/skills/code-simplification/` | Reduce complexity |
-| `security-and-hardening` | `sources/agent-skills/skills/security-and-hardening/` | OWASP prevention |
+| `code-simplification` | `sources/agent-skills/skills/code-simplification/` | Kurangi kompleksitas |
+| `security-and-hardening` | `sources/agent-skills/skills/security-and-hardening/` | Pencegahan OWASP |
 | `performance-optimization` | `sources/agent-skills/skills/performance-optimization/` | Measure-first perf |
 
 ### Ship
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
 | `git-workflow-and-versioning` | `sources/agent-skills/skills/git-workflow-and-versioning/` | Trunk-based git |
 | `ci-cd-and-automation` | `sources/agent-skills/skills/ci-cd-and-automation/` | Pipelines & gates |
-| `deprecation-and-migration` | `sources/agent-skills/skills/deprecation-and-migration/` | Sunset patterns |
+| `deprecation-and-migration` | `sources/agent-skills/skills/deprecation-and-migration/` | Pola sunset |
 | `documentation-and-adrs` | `sources/agent-skills/skills/documentation-and-adrs/` | ADRs & API docs |
 | `observability-and-instrumentation` | `sources/agent-skills/skills/observability-and-instrumentation/` | Logging & tracing |
 | `shipping-and-launch` | `sources/agent-skills/skills/shipping-and-launch/` | Launch checklists |
@@ -133,15 +133,15 @@ Source: `sources/agent-skills/skills/`
 
 ## Writing Quality Skills (1)
 
-Source: `sources/no-ai-slop/skills/`
+Lokasi: `sources/no-ai-slop/skills/`
 
-| Skill | Path | Deskripsi |
-|-------|------|-----------|
-| `no-ai-slop` | `sources/no-ai-slop/skills/no-ai-slop/` | Remove 20+ AI slop patterns |
+| Skill | Lokasi | Deskripsi |
+|-------|--------|-----------|
+| `no-ai-slop` | `sources/no-ai-slop/skills/no-ai-slop/` | Hapus 20+ pola AI slop |
 
 ---
 
-## Strict Execution Protocol
+## Protokol Eksekusi Ketat
 
 ### Aturan Wajib
 
@@ -153,14 +153,14 @@ Source: `sources/no-ai-slop/skills/`
 ### Cara Menggunakan Skill
 
 1. Identifikasi skill yang dibutuhkan dari tabel di atas
-2. Baca `SKILL.md` dari path yang tercantum
+2. Baca `SKILL.md` dari lokasi yang tercantum
 3. Ikuti instruksi dalam SKILL.md
 4. Untuk SEO skills, gunakan scripts dari `sources/claude-seo/scripts/`
 5. Untuk engineering skills, gunakan references dari `sources/agent-skills/references/`
 
 ---
 
-## Token Minimization Guidelines
+## Pedoman Token Minimization
 
 ### Prinsip: Hanya Load Yang Dibutuhkan
 
@@ -182,6 +182,6 @@ Untuk pencarian skill lengkap, lihat `registry/skill_index.json`.
 
 ---
 
-## License
+## Lisensi
 
 Semua skill di monorepo ini berlisensi **MIT**. Lihat `LICENSE` file di masing-masing repo sumber untuk detail.

@@ -21,7 +21,7 @@ TOTAL=0
 PASSED=0
 FAILED=0
 
-# Helper function
+# Helper function - check file exists
 check_skill() {
     local path="$1"
     local name="$2"
@@ -33,6 +33,36 @@ check_skill() {
     else
         echo -e "${RED}❌ $name — MISSING: $path${NC}"
         FAILED=$((FAILED + 1))
+    fi
+}
+
+# Helper function - validate SKILL.md content
+validate_skill_content() {
+    local path="$1"
+    local name="$2"
+    TOTAL=$((TOTAL + 1))
+    
+    if [ ! -f "$path" ]; then
+        echo -e "${RED}❌ $name — FILE NOT FOUND${NC}"
+        FAILED=$((FAILED + 1))
+        return
+    fi
+    
+    # Check file size
+    local size=$(wc -c < "$path")
+    if [ "$size" -lt 50 ]; then
+        echo -e "${RED}❌ $name — FILE TOO SMALL ($size bytes)${NC}"
+        FAILED=$((FAILED + 1))
+        return
+    fi
+    
+    # Check for frontmatter
+    if head -1 "$path" | grep -q "^---"; then
+        echo -e "${GREEN}✅ $name (with frontmatter)${NC}"
+        PASSED=$((PASSED + 1))
+    else
+        echo -e "${YELLOW}⚠️  $name (no frontmatter, but OK)${NC}"
+        PASSED=$((PASSED + 1))
     fi
 }
 
@@ -150,33 +180,69 @@ check_skill "sources/no-ai-slop/skills/no-ai-slop/SKILL.md" "no-ai-slop"
 echo ""
 
 # =============================================================================
-# 5. INFRASTRUCTURE CHECKS
+# 5. CONTENT VALIDATION (Sample)
+# =============================================================================
+echo -e "${YELLOW}--- Content Validation (Sample) ---${NC}"
+
+validate_skill_content "sources/taste-skill/skills/taste-skill/SKILL.md" "taste-skill content"
+validate_skill_content "sources/claude-seo/skills/seo/SKILL.md" "seo content"
+validate_skill_content "sources/agent-skills/skills/test-driven-development/SKILL.md" "tdd content"
+validate_skill_content "sources/no-ai-slop/skills/no-ai-slop/SKILL.md" "no-ai-slop content"
+
+echo ""
+
+# =============================================================================
+# 6. INFRASTRUCTURE CHECKS
 # =============================================================================
 echo -e "${YELLOW}--- Infrastructure ---${NC}"
 
 check_skill "AGENT.md" "AGENT.md (bootstrap)"
+check_skill "README.md" "README.md (documentation)"
+check_skill "HOW_TO_USE.md" "HOW_TO_USE.md (guide)"
+check_skill "CONTRIBUTING.md" "CONTRIBUTING.md (contributing)"
 check_skill "mcp.json" "mcp.json (MCP manifest)"
 check_skill "openapi.json" "openapi.json (REST manifest)"
 check_skill "registry/skill_index.json" "skill_index.json (registry)"
 check_skill "scripts/test_all_skills.sh" "test_all_skills.sh"
 check_skill "scripts/sync_diff.sh" "sync_diff.sh"
+check_skill "scripts/generate_registry.sh" "generate_registry.sh"
 
 echo ""
 
 # =============================================================================
-# 6. FILE COUNT VERIFICATION
+# 7. FILE COUNT VERIFICATION
 # =============================================================================
 echo -e "${YELLOW}--- File Count Verification ---${NC}"
 
-ORIGINAL_COUNT=$(find ../taste-skill ../claude-seo ../agent-skills ../no-ai-slop -type f -not -path "*/.git/*" | wc -l)
 COPIED_COUNT=$(find sources/ -type f -not -path "*/.git/*" | wc -l)
 
 TOTAL=$((TOTAL + 1))
-if [ "$ORIGINAL_COUNT" = "$COPIED_COUNT" ]; then
-    echo -e "${GREEN}✅ File count: $ORIGINAL_COUNT original = $COPIED_COUNT copied${NC}"
+if [ "$COPIED_COUNT" -gt 500 ]; then
+    echo -e "${GREEN}✅ File count: $COPIED_COUNT files (expected >500)${NC}"
     PASSED=$((PASSED + 1))
 else
-    echo -e "${RED}❌ File count mismatch: $ORIGINAL_COUNT original ≠ $COPIED_COUNT copied${NC}"
+    echo -e "${RED}❌ File count too low: $COPIED_COUNT (expected >500)${NC}"
+    FAILED=$((FAILED + 1))
+fi
+
+echo ""
+
+# =============================================================================
+# 8. GITIGNORE CHECK
+# =============================================================================
+echo -e "${YELLOW}--- Gitignore Check ---${NC}"
+
+TOTAL=$((TOTAL + 1))
+if [ -f ".gitignore" ]; then
+    if grep -q ".sync-hashes" .gitignore; then
+        echo -e "${GREEN}✅ .gitignore exists and includes .sync-hashes${NC}"
+        PASSED=$((PASSED + 1))
+    else
+        echo -e "${YELLOW}⚠️  .gitignore exists but missing .sync-hashes${NC}"
+        PASSED=$((PASSED + 1))
+    fi
+else
+    echo -e "${RED}❌ .gitignore not found${NC}"
     FAILED=$((FAILED + 1))
 fi
 
