@@ -41,6 +41,8 @@ Start with the `using-agent-skills` skill loaded. It contains a flowchart that m
 
 ## Recommended Setup
 
+Rolling out to a real project? The **[Adoption Guide](adoption-guide.md)** covers two end-to-end paths: the full lifecycle from day one for a greenfield project, and an incremental, verification-first rollout for an established codebase. The setup below is the quick version.
+
 ### Minimal (Start here)
 
 Load three essential skills into your rules file:
@@ -132,8 +134,19 @@ The `references/` directory contains supplementary checklists:
 | `performance-checklist.md` | performance-optimization |
 | `security-checklist.md` | security-and-hardening |
 | `accessibility-checklist.md` | frontend-ui-engineering |
+| `definition-of-done.md` | all skills / every change |
+| `observability-checklist.md` | observability-and-instrumentation |
+| `orchestration-patterns.md` | doubt-driven-development |
 
 Load a reference when you need detailed patterns beyond what the skill covers.
+
+If you install one skill with `npx skills add ... --skill <name>`, only the
+selected `skills/<name>/` directory is copied. The skill still works, but paths
+to supplementary checklists in the repo-level `references/` directory are
+unavailable. Use a whole-repo integration, clone the repository, or copy the
+needed checklist into a `references/` directory inside the installed skill.
+This portability gap is tracked in
+[addyosmani/agent-skills#361](https://github.com/addyosmani/agent-skills/issues/361).
 
 ## Spec and task artifacts
 
