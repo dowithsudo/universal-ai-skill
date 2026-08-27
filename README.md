@@ -38,8 +38,8 @@ Monorepo ini berisi **63 skills** dari 4 repositori sumber:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/universal-agent-skills.git
-cd universal-agent-skills
+git clone git@github.com:dowithsudo/universal-ai-skill.git
+cd universal-ai-skill
 ```
 
 ### 2. Baca AGENT.md
@@ -56,7 +56,7 @@ Lihat tabel di bawah atau buka `registry/skill_index.json` untuk pencarian lengk
 
 ### 🎨 Frontend Design (13 skills)
 
-Source: `sources/taste-skill/skills/`
+Lokasi: `sources/taste-skill/skills/`
 
 | Skill | Install Name | Deskripsi |
 |-------|--------------|-----------|
@@ -76,7 +76,7 @@ Source: `sources/taste-skill/skills/`
 
 ### 🔍 SEO Analysis (25 skills)
 
-Source: `sources/claude-seo/skills/`
+Lokasi: `sources/claude-seo/skills/`
 
 | Skill | Deskripsi |
 |-------|-----------|
@@ -108,34 +108,34 @@ Source: `sources/claude-seo/skills/`
 
 ### ⚙️ Engineering Workflow (24 skills)
 
-Source: `sources/agent-skills/skills/`
+Lokasi: `sources/agent-skills/skills/`
 
 #### Meta
 | Skill | Deskripsi |
 |-------|-----------|
-| using-agent-skills | How to use this pack |
+| using-agent-skills | Cara menggunakan skill pack ini |
 
 #### Define
 | Skill | Deskripsi |
 |-------|-----------|
-| interview-me | Requirements extraction |
-| idea-refine | Idea exploration |
-| spec-driven-development | PRD before code |
+| interview-me | Ekstraksi kebutuhan |
+| idea-refine | Eksplorasi ide |
+| spec-driven-development | PRD sebelum kode |
 
 #### Plan
 | Skill | Deskripsi |
 |-------|-----------|
-| planning-and-task-breakdown | Task decomposition |
+| planning-and-task-breakdown | Pecahan tugas |
 
 #### Build
 | Skill | Deskripsi |
 |-------|-----------|
 | incremental-implementation | Vertical slices |
 | test-driven-development | Red-Green-Refactor |
-| context-engineering | Right info, right time |
-| source-driven-development | Official docs grounding |
-| doubt-driven-development | Adversarial review |
-| frontend-ui-engineering | UI components, a11y |
+| context-engineering | Informasi tepat waktu |
+| source-driven-development | Berdasarkan dokumentasi resmi |
+| doubt-driven-development | Review adversarial |
+| frontend-ui-engineering | Komponen UI, a11y |
 | api-and-interface-design | Contract-first API |
 
 #### Verify
@@ -148,8 +148,8 @@ Source: `sources/agent-skills/skills/`
 | Skill | Deskripsi |
 |-------|-----------|
 | code-review-and-quality | Five-axis review |
-| code-simplification | Reduce complexity |
-| security-and-hardening | OWASP prevention |
+| code-simplification | Kurangi kompleksitas |
+| security-and-hardening | Pencegahan OWASP |
 | performance-optimization | Measure-first perf |
 
 #### Ship
@@ -157,18 +157,18 @@ Source: `sources/agent-skills/skills/`
 |-------|-----------|
 | git-workflow-and-versioning | Trunk-based git |
 | ci-cd-and-automation | Pipelines & gates |
-| deprecation-and-migration | Sunset patterns |
+| deprecation-and-migration | Pola sunset |
 | documentation-and-adrs | ADRs & API docs |
 | observability-and-instrumentation | Logging & tracing |
 | shipping-and-launch | Launch checklists |
 
 ### ✍️ Writing Quality (1 skill)
 
-Source: `sources/no-ai-slop/skills/`
+Lokasi: `sources/no-ai-slop/skills/`
 
 | Skill | Deskripsi |
 |-------|-----------|
-| no-ai-slop | Remove 20+ AI slop patterns |
+| no-ai-slop | Hapus 20+ pola AI slop |
 
 ---
 
@@ -178,11 +178,11 @@ Source: `sources/no-ai-slop/skills/`
 
 ```bash
 # Install via marketplace
-/plugin marketplace add your-username/universal-agent-skills
+/plugin marketplace add dowithsudo/universal-ai-skill
 
 # Atau clone langsung
-git clone https://github.com/your-username/universal-agent-skills.git
-claude --plugin-dir /path/to/universal-agent-skills
+git clone git@github.com:dowithsudo/universal-ai-skill.git
+claude --plugin-dir /path/to/universal-ai-skill
 ```
 
 **Cara pakai skill:**
@@ -226,14 +226,14 @@ cp sources/agent-skills/skills/test-driven-development/SKILL.md .cursor/rules/
 
 ```bash
 # Install via plugin marketplace
-codex plugin marketplace add your-username/universal-agent-skills
+codex plugin marketplace add dowithsudo/universal-ai-skill
 ```
 
 ### Gemini CLI
 
 ```bash
 # Install sebagai native skills
-gemini skills install /path/to/universal-agent-skills/sources/
+gemini skills install /path/to/universal-ai-skill/sources/
 ```
 
 ---
@@ -290,10 +290,12 @@ Agent:
 ## Struktur Folder
 
 ```
-universal-agent-skills/
+universal-ai-skill/
 ├── AGENT.md                    # Bootstrap document (WAJIB DIBACA)
 ├── mcp.json                    # MCP manifest
 ├── openapi.json                # REST manifest
+├── HOW_TO_USE.md               # Panduan praktis untuk pemula
+├── QUICKSTART.md               # Quick reference
 ├── registry/
 │   └── skill_index.json        # Global skill index
 ├── scripts/
@@ -344,14 +346,14 @@ cat sources/taste-skill/skills/taste-skill/SKILL.md  # Hanya 1 skill
 ls sources/taste-skill/skills/taste-skill/SKILL.md
 ```
 
-### Q: How do I know which skill to use?
+### Q: Bagaimana cara mengetahui skill yang harus dipakai?
 
 **A:** Baca `AGENT.md` atau gunakan `registry/skill_index.json`:
 ```bash
 cat registry/skill_index.json | jq '.categories'
 ```
 
-### Q: Can I add my own skills?
+### Q: Apakah saya boleh menambahkan skill sendiri?
 
 **A:** Ya! Tambahkan di `sources/` dengan struktur:
 ```
@@ -362,12 +364,31 @@ sources/my-new-skill/
 
 Lalu update `registry/skill_index.json`.
 
-### Q: How do I verify all skills are intact?
+### Q: Bagaimana cara memverifikasi semua skill masih utuh?
 
 **A:** Jalankan test suite:
 ```bash
 bash scripts/test_all_skills.sh
 ```
+
+### Q: Bagaimana cara mengetahui ada perubahan file?
+
+**A:** Jalankan script sync_diff:
+```bash
+bash scripts/sync_diff.sh
+```
+
+### Q: Apakah saya boleh mengedit isi SKILL.md?
+
+**A:** Boleh, tapi disarankan untuk membuat salinan terlebih dahulu agar tidak mengubah file asli.
+
+### Q: Dimana saya bisa menemukan skill yang saya butuhkan?
+
+**A:** Lihat `registry/skill_index.json` atau langsung lihat folder `sources/[kategori]/skills/`.
+
+### Q: Apakah ada batasan jumlah skill yang bisa dipakai?
+
+**A:** Tidak ada batasan. Gunakan sesuai kebutuhan.
 
 ---
 
@@ -437,7 +458,7 @@ Terima kasih kepada para pembuat skill original:
 
 ## Contributing
 
-Silakan贡献! Lihat `CONTRIBUTING.md` untuk panduan.
+Silakan berkontribusi! Lihat `CONTRIBUTING.md` untuk panduan.
 
 ---
 

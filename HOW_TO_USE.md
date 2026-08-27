@@ -149,7 +149,7 @@ User: "Gunakan skill dari sources/agent-skills/skills/test-driven-development/SK
 ```
 # Prompt 1: Landing page
 "Baca skill dari sources/taste-skill/skills/taste-skill/SKILL.md
-Lalu buatkan landing page untuk produk AI写作工具 dengan design premium"
+Lalu buatkan landing page untuk produk AI writing tool dengan design premium"
 
 # Prompt 2: Redesign
 "Baca skill dari sources/taste-skill/skills/redesign-skill/SKILL.md
@@ -253,14 +253,35 @@ developer, menggunakan design style minimalist seperti Linear"
 ### Q: AI Agent mana yang bisa pakai?
 **A:** Claude, Cursor, ChatGPT, OpenCode, FreeBuff, Codex, Gemini, Windsurf, dan lainnya.
 
-### Q: Bagai mana cara AI Agent mengetahui skill ini?
+### Q: Bagaimana cara AI Agent mengetahui skill ini?
 **A:** AI Agent akan membaca file `AGENT.md` saat pertama kali membuka repository ini.
 
 ### Q: Apakah semua skill harus dipakai sekaligus?
 **A:** Tidak. Pilih skill yang dibutuhkan saja.
 
 ### Q: Bagaimana cara menambahkan skill baru?
-**A:** Tambahkan folder baru di `sources/` dengan file `SKILL.md` di dalamnya.
+**A:** Tambahkan folder baru di `sources/` dengan file `SKILL.md` di dalamnya, lalu update `registry/skill_index.json`.
+
+### Q: Bagaimana cara memverifikasi semua skill masih utuh?
+**A:** Jalankan script verifikasi:
+```bash
+bash scripts/test_all_skills.sh
+```
+
+### Q: Bagaimana cara mengetahui ada perubahan file?
+**A:** Jalankan script sync_diff:
+```bash
+bash scripts/sync_diff.sh
+```
+
+### Q: Apakah saya boleh mengedit isi SKILL.md?
+**A:** Boleh, tapi disarankan untuk membuat salinan terlebih dahulu agar tidak mengubah file asli.
+
+### Q: Dimana saya bisa menemukan skill yang saya butuhkan?
+**A:** Lihat `registry/skill_index.json` atau langsung lihat folder `sources/[kategori]/skills/`.
+
+### Q: Apakah ada batasan jumlah skill yang bisa dipakai?
+**A:** Tidak ada batasan. Gunakan sesuai kebutuhan.
 
 ---
 
