@@ -16,20 +16,22 @@ jobs:
       
       - name: Make scripts executable
         run: |
-          chmod +x scripts/test_all_skills.sh
-          chmod +x scripts/sync_diff.sh
-          chmod +x scripts/generate_registry.sh
+          chmod +x scripts/*.sh
       
       - name: Run test suite
         run: bash scripts/test_all_skills.sh
+      
+      - name: Build search index
+        run: bash scripts/build_index.sh
       
       - name: Generate registry
         run: bash scripts/generate_registry.sh
       
       - name: Check for changes
         run: |
-          if [ -n "$(git status --porcelain registry/skill_index.json)" ]; then
-            echo "⚠️ Registry is out of date. Run 'bash scripts/generate_registry.sh' locally."
+          if [ -n "$(git status --porcelain registry/skill_index.json registry/search_index.json)" ]; then
+            echo "⚠️ Registry or index is out of date."
+            echo "Run 'bash scripts/generate_registry.sh' and 'bash scripts/build_index.sh' locally."
             exit 1
           fi
   
@@ -58,13 +60,18 @@ jobs:
               exit 1
             fi
             
-            echo "✅ $skill"
+            # Check for frontmatter (optional but recommended)
+            if head -1 "$skill" | grep -q "^---"; then
+              echo "✅ $skill (with frontmatter)"
+            else
+              echo "⚠️  $skill (no frontmatter, but OK)"
+            fi
           done
       
       - name: Validate JSON files
         run: |
           echo "Validating JSON files..."
-          for json in registry/skill_index.json mcp.json openapi.json; do
+          for json in registry/skill_index.json registry/search_index.json mcp.json openapi.json; do
             if [ -f "$json" ]; then
               if python3 -m json.tool "$json" > /dev/null 2>&1; then
                 echo "✅ $json is valid JSON"
@@ -104,3 +111,103 @@ jobs:
           else
             echo "✅ No trailing whitespace found"
           fi
+      
+      - name: Check script syntax
+        run: |
+          echo "Checking script syntax..."
+          for script in scripts/*.sh; do
+            if bash -n "$script" 2>/dev/null; then
+              echo "✅ $script syntax OK"
+            else
+              echo "❌ $script has syntax errors"
+              exit 1
+            fi
+          done
+  
+  tools:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Test preview tool
+        run: |
+          echo "Testing preview tool..."
+          chmod +x scripts/preview_skill.sh
+          ./scripts/preview_skill.sh taste-skill
+      
+      - name: Test find tool
+        run: |
+          echo "Testing find tool..."
+          chmod +x scripts/find_skill.sh
+          ./scripts/find_skill.sh -l
+      
+      - name: Test search tool
+        run: |
+          echo "Testing search tool..."
+          chmod +x scripts/search.sh
+          chmod +x scripts/build_index.sh
+          ./scripts/build_index.sh
+          ./scripts/search.sh design
+      
+      - name: Test tutorial
+        run: |
+          echo "Testing tutorial (syntax only)..."
+          bash -n scripts/tutorial.sh
+      
+      - name: Test upstream sync (dry run)
+        run: |
+          echo "Testing upstream sync (dry run)..."
+          chmod +x scripts/sync_upstream.sh
+          ./scripts/sync_upstream.sh --dry-run || true
+  
+  docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Validate documentation
+        run: |
+          echo "Validating documentation..."
+          
+          # Check required docs exist
+          for doc in AGENT.md README.md QUICKSTART.md HOW_TO_USE.md CONTRIBUTING.md; do
+            if [ -f "$doc" ]; then
+              echo "✅ $doc exists"
+            else
+              echo "❌ $doc missing"
+              exit 1
+            fi
+          done
+          
+          # Check docs directory
+          for doc in docs/DECISION_TREE.md docs/QUICK_REFERENCE.md; do
+            if [ -f "$doc" ]; then
+              echo "✅ $doc exists"
+            else
+              echo "⚠️  $doc missing (optional)"
+            fi
+          done
+      
+      - name: Check documentation links
+        run: |
+          echo "Checking documentation links..."
+          # This is a basic check - in production, you might use a link checker
+          for doc in README.md HOW_TO_USE.md; do
+            if [ -f "$doc" ]; then
+              # Check for broken internal links (basic)
+              grep -oP '\[.*?\]\((.*?)\)' "$doc" | grep -oP '\((.*?)\)' | tr -d '()' | while read -r link; do
+                if [[ "$link" == http* ]]; then
+                  # External link - skip
+                  continue
+                elif [ -f "$link" ] || [ -d "$link" ]; then
+                  echo "✅ Link OK: $link"
+                else
+                  echo "⚠️  Broken link in $doc: $link"
+                fi
+              done
+            fi
+          done
